@@ -6,8 +6,6 @@ COPY package* ./
 RUN npm install
 RUN npm install sqlite3 dotenv
 COPY . .
-RUN if [[ ! -e revcord.sqlite ]]; then touch revcord.sqlite; fi
-RUN if [[ -e revcord.sqlite ]]; then chmod -R 777 revcord.sqlite; fi
 RUN npm run build
 
 
@@ -15,4 +13,6 @@ RUN npm run build
 FROM node:17-alpine AS prod
 WORKDIR /app
 COPY --from=build /build .
+RUN if [[ ! -e revcord.sqlite ]]; then touch revcord.sqlite; fi
+RUN if [[ -e revcord.sqlite ]]; then chmod -R 777 revcord.sqlite; fi
 CMD ["npm", "start"]
