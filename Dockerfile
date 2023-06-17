@@ -15,8 +15,8 @@ WORKDIR /app
 COPY --from=build /build .
 RUN if [[ ! -e revcord.sqlite ]]; then touch revcord.sqlite; fi
 RUN if [[ -e revcord.sqlite ]]; then chmod -R 777 revcord.sqlite; fi
-CMD ["npm", "start"]
-CMD ["npm", "stop"]
+RUN timeout 20 npm start
+RUN npm stop
 
 RUN npm install sqlite3 dotenv
 RUN rm -rf node_modules
