@@ -5,7 +5,6 @@ WORKDIR /build/
 COPY package* ./
 RUN npm install
 RUN npm install sqlite3 dotenv
-RUN rm -rf node_modules
 COPY . .
 RUN npm run build
 
