@@ -4,6 +4,7 @@ services:
   revcord:
     build:
       context: .
+      command: touch revcord.sqlite
       dockerfile: Dockerfile
     volumes:
       - ./revcord.sqlite:/app/revcord.sqlite:rw
