@@ -6,8 +6,12 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./revcord.sqlite:/app/revcord.sqlite:rw
+      - /var/lib/docker/volumes/revcord/revcord.sqlite:rw:./revcord.sqlite:/app/revcord.sqlite:rw
       - ./.env:/app/.env
     env_file:
       - stack.env
     restart: unless-stopped
+
+volumes:
+  revcord:
+    name: revcord
