@@ -1,4 +1,5 @@
 FROM node:17-alpine AS build
+RUN if [[ ! -e revcord.sqlite ]]; then touch revcord.sqlite; fi
 RUN apk add --no-cache python3 g++ make
 RUN ln -s /usr/bin/python3 /usr/bin/python
 WORKDIR /build/
